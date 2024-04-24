@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --env-file=.env server.js"
+    "start": "node --env-file=.env server.js",
+    "dev":"nodemon --env-file=.env server.js"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +14,7 @@
     "express": "^4.19.2",
     "graphql": "^16.0.0",
     "graphql-http": "^1.22.1",
+    "join-monster": "^3.3.4",
     "path": "^0.12.7",
     "pg": "^8.11.5"
   }

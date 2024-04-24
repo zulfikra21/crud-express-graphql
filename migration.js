@@ -2,16 +2,26 @@ const { Client } = require("pg");
 const fs = require("fs");
 const path = require("path");
 
+const { DATABASE_USER, DATABASE_PASSWORD, DATABASE, DATABASE_HOST, DATABASE_PORT } = process.env
+
 const client = new Client({
-    host:"localhost",
-    user: "cat",
-    password:"cat_2023",
-    port: 5678,
-    database:"graphql"
+    host:DATABASE_HOST,
+    user: DATABASE_USER,
+    password:DATABASE_PASSWORD,
+    port: DATABASE_PORT,
+    database:DATABASE
 });
 
 client.connect();
 
 let query = fs.readFileSync(path.resolve(__dirname,"schema.sql")).toString();
 
-client.query(query);
+(() => {
+    try {
+        client.query(query);
+        console.log("success to migrate!!")
+    } catch (error) {
+        console.error(error)
+        console.log("failed to migration")    
+    }
+})()
