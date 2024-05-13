@@ -20,6 +20,7 @@ let query = fs.readFileSync(path.resolve(__dirname,"schema.sql")).toString();
     try {
         client.query(query);
         console.log("success to migrate!!")
+        process.exit(1)
     } catch (error) {
         console.error(error)
         console.log("failed to migration")    
